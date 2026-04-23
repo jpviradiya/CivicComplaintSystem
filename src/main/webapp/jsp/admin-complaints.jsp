@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
+<jsp:include page="/components/navbar.jsp" />
 <div class="container">
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
     <h2 style="margin: 0;">Global Complaint Management</h2>

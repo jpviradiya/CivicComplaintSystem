@@ -13,13 +13,7 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-<nav class="navbar">
-  <a href="${pageContext.request.contextPath}/jsp/dashboard.jsp" class="navbar-brand">Civic Connect</a>
-  <div class="nav-links">
-    <a href="${pageContext.request.contextPath}/jsp/dashboard.jsp">Dashboard</a>
-    <a href="${pageContext.request.contextPath}/logout">Logout</a>
-  </div>
-</nav>
+<jsp:include page="/components/navbar.jsp" />
 
 <div class="container" style="max-width: 650px;">
   <div class="card">
