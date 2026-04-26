@@ -1,10 +1,6 @@
 <%@ page import="com.project.civic.model.User" %>
 <%
   User user = (User) session.getAttribute("user");
-  if (user == null || !"ADMIN".equals(user.getRole())) {
-    response.sendRedirect(request.getContextPath() + "/jsp/login.jsp");
-    return;
-  }
 %>
 <html>
 <head>

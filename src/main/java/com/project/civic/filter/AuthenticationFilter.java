@@ -28,7 +28,23 @@ public class AuthenticationFilter implements Filter {
         boolean registerRequest = request.getRequestURI().equals(registerURI) || request.getRequestURI().equals(registerJsp);
         boolean staticResource = request.getRequestURI().endsWith(".css") || request.getRequestURI().contains("/css/");
 
+        if (loggedIn && (loginRequest || registerRequest)) {
+            User user = (User) session.getAttribute("user");
+            if ("ADMIN".equals(user.getRole())) {
+                response.sendRedirect(request.getContextPath() + "/jsp/admin-dashboard.jsp");
+            } else {
+                response.sendRedirect(request.getContextPath() + "/jsp/dashboard.jsp");
+            }
+            return;
+        }
+
         if (loggedIn || loginRequest || registerRequest || staticResource) {
+            if (loggedIn && !staticResource) {
+                response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+                response.setHeader("Pragma", "no-cache");
+                response.setDateHeader("Expires", 0);
+            }
+
             if (request.getRequestURI().contains("admin") || request.getRequestURI().contains("viewAllComplaints")) {
                 User user = (User) session.getAttribute("user");
                 if (user == null || !"ADMIN".equals(user.getRole())) {
