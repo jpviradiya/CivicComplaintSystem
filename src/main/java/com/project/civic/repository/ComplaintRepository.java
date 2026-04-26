@@ -1,5 +1,6 @@
 package com.project.civic.repository;
 
+import com.project.civic.dto.ComplaintDTO;
 import com.project.civic.model.Complaint;
 import com.project.civic.util.DBUtil;
 
@@ -118,12 +119,55 @@ public class ComplaintRepository {
         }
     }
 
-    private Complaint mapRowToComplaint(ResultSet rs) throws SQLException {
-        Complaint c = new Complaint();
-        c.setId(rs.getInt("id"));
-        c.setTitle(rs.getString("title"));
-        c.setDescription(rs.getString("description"));
-        c.setStatus(rs.getString("status"));
-        return c;
+    public java.util.List<ComplaintDTO> findAllWithUsers() {
+        java.util.List<ComplaintDTO> complaints = new java.util.ArrayList<>();
+        String sql = "SELECT c.id, c.title, c.description, c.status, u.name as user_name " +
+                     "FROM complaints c JOIN users u ON c.user_id = u.id";
+
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                ComplaintDTO dto = new ComplaintDTO();
+                dto.setId(rs.getInt("id"));
+                dto.setTitle(rs.getString("title"));
+                dto.setDescription(rs.getString("description"));
+                dto.setStatus(rs.getString("status"));
+                dto.setUserName(rs.getString("user_name"));
+                complaints.add(dto);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return complaints;
+    }
+
+    public ComplaintDTO findByIdWithUser(int id) {
+        String sql = "SELECT c.id, c.title, c.description, c.status, u.name as user_name " +
+                     "FROM complaints c JOIN users u ON c.user_id = u.id WHERE c.id = ?";
+        ComplaintDTO dto = null;
+
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    dto = new ComplaintDTO();
+                    dto.setId(rs.getInt("id"));
+                    dto.setTitle(rs.getString("title"));
+                    dto.setDescription(rs.getString("description"));
+                    dto.setStatus(rs.getString("status"));
+                    dto.setUserName(rs.getString("user_name"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return dto;
     }
 }

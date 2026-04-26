@@ -15,7 +15,7 @@ public class ViewAllComplaintsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.setAttribute("complaints", repository.findAll());
+        request.setAttribute("complaints", repository.findAllWithUsers());
         request.getRequestDispatcher("jsp/admin-complaints.jsp")
                 .forward(request, response);
     }

@@ -21,13 +21,13 @@
         <div class="card">
             <h3>File a Report</h3>
             <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Found an issue in your neighborhood? Report it to the authorities now.</p>
-            <a href="${pageContext.request.contextPath}/jsp/complaint-form.jsp" class="btn btn-primary">Start New Complaint</a>
+            <a href="${pageContext.request.contextPath}/jsp/complaint-form.jsp" class="btn btn-primary" style="width: 100%; box-sizing: border-box;">Start New Complaint</a>
         </div>
 
         <div class="card">
             <h3>Track Progress</h3>
             <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Check the live status of your previously submitted complaints and reports.</p>
-            <a href="${pageContext.request.contextPath}/complaints" class="btn btn-primary" style="background: white; color: var(--primary); border: 1px solid var(--primary);">View My History</a>
+            <a href="${pageContext.request.contextPath}/complaints" class="btn btn-primary" style="width: 100%; box-sizing: border-box; background: white; color: var(--primary); border: 1px solid var(--primary);">View My History</a>
         </div>
     </div>
 </div>

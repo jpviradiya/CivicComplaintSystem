@@ -22,14 +22,14 @@
       <div style="font-size: 2rem; margin-bottom: 1rem;"><i class="fa-solid fa-clipboard-list"></i></div>
       <h3>Manage Complaints</h3>
       <p style="color: var(--text-muted); margin-bottom: 1.5rem;">View, track, and update the status of all citizen reports.</p>
-      <a href="${pageContext.request.contextPath}/viewAllComplaints" class="btn btn-primary" style="width: 100%;">Open Management</a>
+      <a href="${pageContext.request.contextPath}/viewAllComplaints" class="btn btn-primary" style="width: 100%; box-sizing: border-box;">Open Management</a>
     </div>
 
     <div class="card" style="text-align: center;">
       <div style="font-size: 2rem; margin-bottom: 1rem;"><i class="fa-solid fa-chart-bar"></i></div>
       <h3>System Reports</h3>
       <p style="color: var(--text-muted); margin-bottom: 1.5rem;">View statistical data and resolution efficiency metrics.</p>
-      <a href="${pageContext.request.contextPath}/report" class="btn btn-primary" style="width: 100%; background: white; color: var(--primary); border: 1px solid var(--primary);">View Reports</a>
+      <a href="${pageContext.request.contextPath}/report" class="btn btn-primary" style="width: 100%; box-sizing: border-box; background: white; color: var(--primary); border: 1px solid var(--primary);">View Reports</a>
     </div>
   </div>
 </div>
